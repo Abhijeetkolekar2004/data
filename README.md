@@ -259,6 +259,72 @@ print("\nFirst 10 predictions vs actual values:")
 for actual, predicted in zip(y_test[:10], y_pred[:10]): 
 print(f"Actual: {actual}, Predicted: {round(predicted, 3)}") 
 
+Q8. A. Creating Pivot Tables in Excel for Car Dataset Analysis 
+To create pivot tables for the requested analyses: 
+1. Cars by make, model, and color:  
+o Create a pivot table with "Make" and "Model" in rows, "Color" in columns, and 
+count of entries as values. 
+o This will show a breakdown of how many cars you have in each category. 
+2. Profit margin by make:  
+o Calculate profit margin as (Sell Price - Buy Price)/Sell Price 
+o Create a pivot table with "Make" in rows and average of profit margin in values. 
+3. Average cost of vehicles:  
+o Create a pivot table with average of "Buy Price" as values. 
+o You can also break this down by make or model if needed. 
+4. Percentage of cars by color:  
+o Create a pivot table with "Color" in rows and count of entries as values. 
+o Calculate the percentage by dividing each color count by the total count. 
+
+o  
+
+B) Logistics Regression on iris data  
+import pandas as pd 
+import numpy as np 
+from sklearn.datasets import load_iris 
+from sklearn.model_selection import train_test_split 
+from sklearn.linear_model import LogisticRegression 
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, 
+confusion_matrix 
+from sklearn.preprocessing import StandardScaler 
+import matplotlib.pyplot as plt 
+import seaborn as sns 
+iris = load_iris() 
+X = iris.data 
+y = iris.target 
+y_binary = (y > 0).astype(int) 
+X_train, X_test, y_train, y_test = train_test_split(X, y_binary, test_size=0.3, random_state=42) 
+scaler = StandardScaler() 
+X_train_scaled = scaler.fit_transform(X_train) 
+X_test_scaled = scaler.transform(X_test) 
+model = LogisticRegression(random_state=42) 
+model.fit(X_train_scaled, y_train) 
+y_pred = model.predict(X_test_scaled) 
+y_pred_prob = model.predict_proba(X_test_scaled)[:, 1] 
+accuracy = accuracy_score(y_test, y_pred) 
+precision = precision_score(y_test, y_pred) 
+recall = recall_score(y_test, y_pred) 
+f1 = f1_score(y_test, y_pred) 
+conf_matrix = confusion_matrix(y_test, y_pred) 
+print(f"Accuracy: {accuracy:.4f}") 
+print(f"Precision: {precision:.4f}") 
+print(f"Recall: {recall:.4f}") 
+print(f"F1 Score: {f1:.4f}") 
+plt.figure(figsize=(8, 6)) 
+sns.heatmap(conf_matrix, annot=True, fmt='d', cmap='Blues',  
+xticklabels=['Not Setosa', 'Setosa'], 
+yticklabels=['Not Setosa', 'Setosa']) 
+plt.xlabel('Predicted') 
+plt.ylabel('Actual') 
+plt.title('Confusion Matrix') 
+plt.show() 
+feature_importance = pd.DataFrame({ 
+'Feature': iris.feature_names, 
+'Coefficient': model.coef_[0] 
+}) 
+feature_importance['Abs_Coefficient'] = abs(feature_importance['Coefficient']) 
+feature_importance = feature_importance.sort_values('Abs_Coefficient', ascending=False) 
+print("\nFeature Importance:") 
+print(feature_importance)
 
 Q9. A) Feature Scaling for Country_Data 
 import pandas as pd 
