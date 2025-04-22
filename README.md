@@ -1,3 +1,5 @@
+dictionary attack
+
 import hashlib
 common_passwords = ["password", "password123", "letmein", "qwerty", "123456", "abc123", "admin", "welcome", "monkey", "sunshine"]
 password_variations = ["", "123", "1234", "12345", "123456", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", "/", "\\", "|", "[", "]", "{", "}", "<", ">"]
@@ -14,3 +16,12 @@ for password in common_passwords:
     break
 else:
     print("Password not found")
+
+
+
+nmap --version    
+ack = nmap -sA -T4 scanme.nmap.org
+sys = nmap -p22,53,80,113,139 scanme.nmap.org
+fin scan = nmap -sF -T4 para
+null = nmap -sN -p 22 scanme.nmap.org
+xmas = nmap -sX -T4 scanme.nmap.org
